@@ -1,0 +1,95 @@
+Tema 3 - ER Simulator
+
+Calatoaie Iulia-Adriana, Grupa 325CA
+
+- am ales sa organizez tema in 6 pachete, dupa cum urmeaza
+
+-> attributes
+->> DoctorType : contine tipul doctorilor posibili si cel al
+investigatorilor(tipul ER_TECHNICAN)
+->> IllnessType : enumeratie din scheletul temei ce contine tipul afectiunilor
+->> PatientState :  contine datele necesare citirii din fisierul de intrare
+datele de stare ale pacientului
+->> State : enumeratie din scheletul temei necesara pentru afisare
+
+-> comparators
+->> DoctorComparator : ordonarea crescatoare a pacientii dupa id-ul
+doctorului care l-a consultat pe fiecare
+->> ExaminationComparator : ordonarea cozii de examinare dupa urgenta
+, in caz de urgente egale, descrescator dupa severitate, in caz de severitati
+egale, invers alfabetic
+->> NameComparator : ordonarea alfabetica a pacientilor dupa nume
+->> SeverityComparator : ordonarea descrescatoare a pacientilor dupa severitate
+
+-> entities
+->> Doctor :
+- un doctor are un tip, un intreg, maxForTreatment, ce reprezinta severitatea
+maxima pe care un pacient o poate avea pentru a fi trimis acasa cu tratament,
+un boolean care atesta faptul ca este chirurg sau nu, in caz ca pacientul
+trebuie operat, o lista cu afectiunile pe care le poate trata si un id
+- fiecare doctor, la citire primeste un id in ordinea lor din input pentru a
+face afisarea lor mai simpla
+- in functie de tipul doctorului se va construi lista de afectiuni tratabile si
+se vor returna factorii C1, C2 si T
+->> Patient
+- un pacient are un id, un nume, o varsta, gradul de urgenta, doctorul ce il
+consulta, rezultatul investigatiilor, numarul de runde pe care le are in cazul
+in care este internat pana va fi externat, in ce coada de asteptare este,
+runda in care va intra in simulare
+- in fiecare runda pacientii cu acelasi time ca si numarul rundei sau mai mic (
+au fost in coada de triaj) vor fi selectati in runda de triaj, unde sunt
+sortati dupa severitate, vor fi trecuti in coada de examinare si vor fi
+investigati cei din coada de investigatii(apoi vor intra din nou in coada de
+examinare pentru runda urmatoare)
+
+-> investigation
+->> InvestigationResult : enumeratie din scheletul temei ce contine
+rezultatatele posibile ale investigatiilor la care a fost supus pacientul
+->> Urgency : enumeratie din scheletul temei ce contine tipurile de urgenta ale
+afectiunii pacientilor
+->> UrgencyEstimnator: clasa din scheletul temei in cadrul careia se stabileste
+gradul ce urgenta la fiecarui pacient
+
+-> oberver
+->> DoctorObserver :
+- clasa observator pentru clasa ERSimulator
+- fiecare doctor isi cosulta pacientii internati (aflati in treatmentQueue) si
+va decide daca ramane inca in coada de tratament (daca mai are runde si
+severitatea este diferita de 0) sau poate fi trimis acasa cu tratament
+- rezultatele vor fi afisate la consola pentru fiecare pacient in ordinea
+doctorilor din input
+->> NurseObserver :
+- clasa observator pentru clasa ERSimulator
+- fiecare pacient din lista de treatmentQueue (internat) va fi tratat (i se
+scade factorul T din severitate si numarul de runde de stat in treatmentQueue)
+- numarul de runde si faptul ca au fost tratati se vor afisa la consola
+->> PatientObserver :
+- clasa observator pentru clasa ERSimulator
+- starea fiecarui pacient care se afla in coada de triaj / executie
+/ investigatii sau a fost trimis acasa / la alt spital / operat va fi afisata
+la consola
+
+-> simulation
+->> ERSimulator :
+- clasa observata de DoctorObserver, NurseObserver, PatientObserver
+- contine toate datele necesare simularii camerei de garda si functiile ce
+fac posibila crearea si mentinerea cozilor de triaj, examinare, investigatii si
+tratament (pacientilor intenati)
+- in functia de creare a cozii de triaj sunt adaugati pacientii cu time egal cu
+runda curenta si cei care au ramas din rundele trecute in coada de triaj si se
+sorteaza dup aseveritate
+- in coada de examinare sunt trecuti primii n, unde n este numarul de asistente
+si sunt sortati corespunzator
+- toti pacientii din coada de examinare sunt consultati de cate un medic care
+decide daca pacientul va fi trimis acasa cu tratament sau la investigatii; daca
+pacientul a venit de la investigatii doctorul tine cont de parerea data de
+investigator si pacientul va fi trimis acasa / internat / operat
+- cei care sunt in coada de investigatii (primii n, unde n este numarul de
+investigatori) sunt vazuti de un ERTechnician care va stabili daca sunt trimisi
+acasa / internati / operati si vor fi adaugati in coada de examinare si sortati
+->> InputReader :
+- contine toate datele ce trebuie citite din fisierul de input
+
+- in functia Main sunt citite datele din fisierul de intrare, adaugati
+observatorii; pentru fiecare runda pacientii sunt trecuti prin cele trei
+etape (triaj, examinare, investigatii) si sunt notificati observatorii
