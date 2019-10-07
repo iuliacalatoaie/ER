@@ -3,6 +3,7 @@ package attributes;
 /**
  * Clasa ce retire tipul unui doctor.
  *
+ * [Calatoaie Iulia-Adriana, Grupa 325CA]
  */
 public enum DoctorType {
 

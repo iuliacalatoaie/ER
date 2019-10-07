@@ -3,6 +3,7 @@ package attributes;
 /**
  * Clasa ce contine datele de stare a unui pacient necesare citirii datelor de intrare.
  *
+ * [Calatoaie Iulia-Adriana, Grupa 325CA]
  */
 public final class PatientState {
 private IllnessType illnessName;
