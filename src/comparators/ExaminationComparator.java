@@ -8,7 +8,6 @@ import java.util.Comparator;
 /**
  * Comparator pentru pacientii aflati in coada de examinare.
  *
- * [Calatoaie Iulia-Adriana, Grupa 325CA]
  */
 public final class ExaminationComparator implements Comparator<Patient> {
 @Override
