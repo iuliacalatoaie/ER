@@ -7,6 +7,7 @@ import investigation.Urgency;
 /**
  * Clasa ce retine datele unui pacient.
  *
+ * [Calatoaie Iulia-Adriana, Grupa 325CA]
  */
 public final class Patient {
 

@@ -9,6 +9,7 @@ import java.util.LinkedList;
 /**
  * Clasa ce contine atributele unui doctor.
  *
+ * [Calatoaie Iulia-Adriana, Grupa 325CA]
  */
 public final class Doctor {
 
