@@ -7,6 +7,7 @@ import java.util.Comparator;
 /**
  * Comparator pentru a ordona pacientii in functie de ordinea doctorilor din datele de intrare.
  *
+ * [Calatoaie Iulia-Adriana, Grupa 325CA]
  */
 public final class DoctorComparator implements Comparator<Patient> {
 @Override

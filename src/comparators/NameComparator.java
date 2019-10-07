@@ -7,6 +7,7 @@ import java.util.Comparator;
 /**
  * Comparator pentru ordonarea alfabetica dupa nume a pacientilor pentru afisarea starii.
  *
+ * [Calatoaie Iulia-Adriana, Grupa 325CA]
  */
 public final class NameComparator implements Comparator<Patient> {
 

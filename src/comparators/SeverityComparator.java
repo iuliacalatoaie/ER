@@ -7,6 +7,7 @@ import java.util.Comparator;
 /**
  * Comparator pentru ordonarea dupa severitate necesara in ordonatrea pacientilor in coada de triaj.
  *
+ * [Calatoaie Iulia-Adriana, Grupa 325CA]
  */
 public final class SeverityComparator implements Comparator<Patient> {
 @Override
